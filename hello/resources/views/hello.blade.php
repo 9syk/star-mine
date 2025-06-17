@@ -1,1 +1,1 @@
-Hello　Laravel!
+Hello Laravel!
