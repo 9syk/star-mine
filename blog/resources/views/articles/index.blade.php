@@ -12,6 +12,7 @@
         <div class="site-title">ミニブログ</div>
     </header>
     <main class="container">
+        <p><a href="{{ route('articles.create') }}">記事を書く</a></p>
         @foreach ($articles as $article)
         <article class="article-item">
             <div class="article-title">{{ $article->title }}</div>

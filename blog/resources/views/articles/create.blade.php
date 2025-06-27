@@ -12,8 +12,6 @@
         <div class="site-title">ミニブログ</div>
     </header>
     <main class="container">
-        <p><a href="{{( route('articles.create')}}">記事を書く</a></p>
-        @foreach($articles as $article)
         <form action="{{ route('articles.store') }}" method="post">
             @csrf 
             <dl class="form-list">
@@ -25,7 +23,6 @@
             <button type="submit">投稿する</button>
             <a href="{{ route('articles.index') }}">キャンセル</a>
         </form>
-        @endforeach
     </main>
     <footer>
         &copy; Laravel8 入門から開発実践まで
