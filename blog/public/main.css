@@ -28,3 +28,9 @@ footer {
     font-size: .9rem;
     color:#815;
 }
+ul.alert{
+    padding:15px 15px 15px 40px;
+    border-radius:4px;
+    background: #f8d815;
+    color:#721c24;
+}
