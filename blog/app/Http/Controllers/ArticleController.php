@@ -102,6 +102,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect(route('articles.index'));
     }
+    
 }
