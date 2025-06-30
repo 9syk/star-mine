@@ -44,3 +44,7 @@ ul.alert {
     border-top: 1px dotted #ddd;
     border-bottom: 1px dotted #ddd;
 }
+.article-control {
+    display: flex;
+    justify-content: space-between;
+}
