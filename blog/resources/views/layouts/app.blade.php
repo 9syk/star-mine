@@ -14,7 +14,9 @@
             <ul>
                 @if (Auth::check())
                 <li><a class="tab-item{{ Request::is('home') ? ' active' : ''}}" href="{{ route('home') }}">マイページ</a></li>
-                <li><a class="tab-item{{ Request::is('articles') ? ' active' : ''}}" href="{{ route('articles.index') }}">記事検索</a></li>                
+                <li><a class="tab-item{{ Request::is('articles') ? ' active' : ''}}" href="{{ route('articles.index') }}">記事検索</a></li>  
+                <li><a class="tab-item{{ Request::is('bookmarks') ? ' active' : ''}}" href="{{ route('bookmarks') }}">ブックマーク</a></li>
+            
                 <li>
                     <form on-submit="return confirm('ログアウトしますか？')" action="{{ route('logout') }}" method="post">
                         @csrf
