@@ -14,7 +14,8 @@ class AddUserIdToArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            //
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -26,7 +27,8 @@ class AddUserIdToArticlesTable extends Migration
     public function down()
     {
         Schema::table('articles', function (Blueprint $table) {
-            //
+            $table->dropForeign('articles_user_id_foreign');
+            $table->dropColumn('user_id');
         });
     }
 }
