@@ -48,3 +48,37 @@ ul.alert {
     display: flex;
     justify-content: space-between;
 }
+button, .btn {
+    display: inline-block;
+    padding: 2px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background: #eee;
+    color: #333;
+    font-size: .9rem;
+    cursor: pointer;
+}
+button:hover, .btn:hover {
+    background: #ddd;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    background: #4470b1;
+    color: rgba(255, 255, 255, .7);
+}
+header nav ul {
+    display: flex;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+header nav ul li {
+    margin: 0 10px;
+}
+header nav ul li a.active {
+    color: #fff;
+}
