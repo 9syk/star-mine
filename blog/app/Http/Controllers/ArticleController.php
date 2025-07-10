@@ -44,6 +44,7 @@ class ArticleController extends Controller
             'body' => 'required'
         ]);
         $article = new Article();
+        $article->user_id = \Auth::id();
         $article->title = $request->title;
         $article->body = $request->body;
         $article->save();
