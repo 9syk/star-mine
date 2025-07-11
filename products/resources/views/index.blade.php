@@ -40,12 +40,10 @@
             </div>
         </form>
 
-{{-- 
         <form onsubmit="return confirm('ログアウトしますか？')" action="{{ route('logout') }}" method="post">
             @csrf
             <button type="submit" class="btn btn-sm btn-dark">ログアウト</button>
         </form>
---}}
 
     </div>
     <div class="col-md-8 col-lg-9">
