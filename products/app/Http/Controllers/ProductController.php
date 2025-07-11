@@ -57,4 +57,27 @@ public function index(Request $request)
     return view("index", ["products" => $products]);
 }
 
+public function create() {
+    return view('products.create'); // フォーム画面へ
+}
+
+public function store(Request $request) {
+    // バリデーション後、保存
+    Product::create($request->all());
+    return redirect()->route('products.index')->with('success', '商品を登録しました');
+}
+
+public function edit(Product $product) {
+    return view('products.edit', compact('product'));
+}
+
+public function update(Request $request, Product $product) {
+    $product->update($request->all());
+    return redirect()->route('products.index')->with('success', '商品を更新しました');
+}
+
+public function destroy(Product $product) {
+    $product->delete();
+    return redirect()->route('products.index')->with('success', '商品を削除しました');
+}
 }
