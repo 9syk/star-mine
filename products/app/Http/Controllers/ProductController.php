@@ -50,6 +50,18 @@ public function index(Request $request)
             break;
         default:
             $query->orderBy('created_at', 'desc'); // 登録順（最新順）
+        case 'id_asc':
+            $query->orderBy('id', 'asc');
+            break;
+        case 'id_desc':
+            $query->orderBy('id', 'desc');
+            break;
+        case 'name_asc':
+            $query->orderBy('name', 'asc');
+            break;
+        case 'maker_asc':
+            $query->orderBy('maker', 'asc');
+            break;
     }
 
     $products = $query->paginate(20);

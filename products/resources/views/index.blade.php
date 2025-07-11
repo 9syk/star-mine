@@ -30,12 +30,16 @@
                         <input type="text" name="max_price" class="form-control" placeholder="円" value="{{ Request::get('max_price') }}">
                     </div>
                 </dd>
-                <dt>並び順</dt>
+                <dt>ソート</dt>
                 <dd>
                     <select name="sort" class="form-select">
                         <option value="">登録順</option>
                         <option value="price_asc"{{ Request::get('sort') == 'price_asc' ? ' selected' : ''}}>価格の安い順</option>
                         <option value="price_desc"{{ Request::get('sort') == 'price_desc' ? ' selected' : ''}}>価格の高い順</option>
+                        <option value="id_asc"{{ Request::get('sort') == 'id_asc' ? ' selected' : ''}}>ID昇順</option>
+                        <option value="id_desc"{{ Request::get('sort') == 'id_desc' ? ' selected' : ''}}>ID降順</option>
+                        <option value="name_asc"{{ Request::get('sort') == 'name_asc' ? ' selected' : ''}}>商品名</option>
+                        <option value="maker_asc"{{ Request::get('sort') == 'maker_asc' ? ' selected' : ''}}>メーカー名</option>
                     </select>
                 </dd>                          
             </dl>
