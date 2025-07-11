@@ -3,7 +3,8 @@
 <div class="row">
     <div class="col-md-4 col-lg-3  mb-4">
         <div class="mb-3 text-end">
-    <a href="{{ route('products.create') }}" class="btn btn-primary">商品を登録する</a>
+    
+
 </div>
 
         <form class="card mb-4" action="/" method="get">
@@ -30,12 +31,16 @@
                         <input type="text" name="max_price" class="form-control" placeholder="円" value="{{ Request::get('max_price') }}">
                     </div>
                 </dd>
-                <dt>並び順</dt>
+                <dt>ソート</dt>
                 <dd>
                     <select name="sort" class="form-select">
                         <option value="">登録順</option>
                         <option value="price_asc"{{ Request::get('sort') == 'price_asc' ? ' selected' : ''}}>価格の安い順</option>
                         <option value="price_desc"{{ Request::get('sort') == 'price_desc' ? ' selected' : ''}}>価格の高い順</option>
+                        <option value="id_asc"{{ Request::get('sort') == 'id_asc' ? ' selected' : ''}}>ID昇順</option>
+                        <option value="id_desc"{{ Request::get('sort') == 'id_desc' ? ' selected' : ''}}>ID降順</option>
+                        <option value="name_asc"{{ Request::get('sort') == 'name_asc' ? ' selected' : ''}}>商品名</option>
+                        <option value="maker_asc"{{ Request::get('sort') == 'maker_asc' ? ' selected' : ''}}>メーカー名</option>
                     </select>
                 </dd>                          
             </dl>
@@ -45,12 +50,18 @@
         </form>
         <form onsubmit="return confirm('ログアウトしますか？')" action="{{ route('logout') }}" method="post">
             @csrf
+            <a href="{{ route('products.create') }}" class="btn btn-primary">商品を登録する</a>
             <button type="submit" class="btn btn-sm btn-dark">ログアウト</button>
         </form>
 
     </div>
     
     <div class="col-md-8 col-lg-9">
+        @if ($products->total() > 0)
+    <p class="text-muted mb-2">
+        該当商品：{{ $products->total() }} 件
+    </p>
+@endif
         <div class="table-responsive">            
             <table class="table table-striped">
                 <thead>
@@ -59,6 +70,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if ($products->count() > 0)
                     @foreach ($products as $product)
                     <tr>
                         <td><a href="{{ route('products.edit', $product) }}">{{ $product->id }}</a></td>
@@ -76,6 +88,15 @@
 </td>
                     </tr>
                     @endforeach
+                    @else
+        <tr>
+            <td colspan="7" class="text-center text-muted py-4">
+                該当する商品は見つかりませんでした。<br>
+                条件を変更して再検索してみてください。
+            </td>
+        </tr>
+    @endif
+
                 </tbody>
             </table>
         </div>
