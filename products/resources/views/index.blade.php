@@ -55,6 +55,11 @@
     </div>
     
     <div class="col-md-8 col-lg-9">
+        @if ($products->total() > 0)
+    <p class="text-muted mb-2">
+        該当商品：{{ $products->total() }} 件
+    </p>
+@endif
         <div class="table-responsive">            
             <table class="table table-striped">
                 <thead>
@@ -63,6 +68,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if ($products->count() > 0)
                     @foreach ($products as $product)
                     <tr>
                         <td><a href="{{ route('products.edit', $product) }}">{{ $product->id }}</a></td>
@@ -80,6 +86,15 @@
 </td>
                     </tr>
                     @endforeach
+                    @else
+        <tr>
+            <td colspan="7" class="text-center text-muted py-4">
+                該当する商品は見つかりませんでした。<br>
+                条件を変更して再検索してみてください。
+            </td>
+        </tr>
+    @endif
+
                 </tbody>
             </table>
         </div>
