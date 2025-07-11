@@ -9,14 +9,52 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
 public function index(Request $request)
-    {
-        if (Auth::check()) {
-            // ログイン済み → 商品一覧表示
-            $products = Product::paginate(20);
-            return view("index", ["products" => $products]);
-        } else {
-            // 未ログイン → welcomeページなどにリダイレクト
-            return view("welcome"); // もしくは redirect('/')
-        }
+{
+    if (!Auth::check()) {
+        return view("welcome");
     }
+
+    $query = Product::query();
+
+    // カテゴリ絞り込み
+    if ($request->filled('category_id')) {
+        $query->where('category_id', $request->category_id);
+    }
+
+    // キーワード（商品名 or メーカー）検索
+    if ($request->filled('keyword')) {
+        $keyword = $request->keyword;
+        $query->where(function ($q) use ($keyword) {
+            $q->where('name', 'like', "%{$keyword}%")
+                ->orWhere('maker', 'like', "%{$keyword}%");
+        });
+    }
+
+    // 最低価格
+    if ($request->filled('min_price')) {
+        $query->where('price', '>=', $request->min_price);
+    }
+
+    // 最高価格
+    if ($request->filled('max_price')) {
+        $query->where('price', '<=', $request->max_price);
+    }
+
+    // 並び順
+    switch ($request->sort) {
+        case 'price_asc':
+            $query->orderBy('price', 'asc');
+            break;
+        case 'price_desc':
+            $query->orderBy('price', 'desc');
+            break;
+        default:
+            $query->orderBy('created_at', 'desc'); // 登録順（最新順）
+    }
+
+    $products = $query->paginate(20);
+
+    return view("index", ["products" => $products]);
+}
+
 }
