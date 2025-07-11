@@ -2,6 +2,10 @@
 @section("content")
 <div class="row">
     <div class="col-md-4 col-lg-3  mb-4">
+        <div class="mb-3 text-end">
+    <a href="{{ route('products.create') }}" class="btn btn-primary">商品を登録する</a>
+</div>
+
         <form class="card mb-4" action="/" method="get">
             <div class="card-header">商品検索</div>
             <dl class="search-box card-body mb-0">
@@ -39,15 +43,13 @@
                 <button type="submit" class="btn w-100 btn-success">検索</button>
             </div>
         </form>
-
-{{-- 
         <form onsubmit="return confirm('ログアウトしますか？')" action="{{ route('logout') }}" method="post">
             @csrf
             <button type="submit" class="btn btn-sm btn-dark">ログアウト</button>
         </form>
---}}
 
     </div>
+    
     <div class="col-md-8 col-lg-9">
         <div class="table-responsive">            
             <table class="table table-striped">
@@ -59,14 +61,19 @@
                 <tbody>
                     @foreach ($products as $product)
                     <tr>
-{{-- 
                         <td><a href="{{ route('products.edit', $product) }}">{{ $product->id }}</a></td>
---}}
                         <td>{{ $product->category->name }}</td>
                         <td>{{ $product->maker }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->price }}</td>
-                        <td>{{ Carbon\Carbon::parse($product->created_at)->format('Y年m月d日') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($product->created_at)->format('Y年m月d日') }}</td>
+<td>
+    <form action="{{ route('products.destroy', $product) }}" method="POST" onsubmit="return confirm('本当に削除しますか？')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-sm btn-danger">削除</button>
+    </form>
+</td>
                     </tr>
                     @endforeach
                 </tbody>

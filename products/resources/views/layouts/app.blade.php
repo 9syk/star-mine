@@ -9,6 +9,7 @@
     <style>
         th, td { white-space: nowrap; }
     </style>
+    <link rel="stylesheet" href="{{ asset('main.css') }}">
 </head>
 <body>
     <header class="navbar navbar-dark bg-dark">
