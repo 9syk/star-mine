@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-4 col-lg-3  mb-4">
         <div class="mb-3 text-end">
-    <a href="{{ route('products.create') }}" class="btn btn-primary">商品を登録する</a>
+    
 </div>
 
         <form class="card mb-4" action="/" method="get">
@@ -49,6 +49,7 @@
         </form>
         <form onsubmit="return confirm('ログアウトしますか？')" action="{{ route('logout') }}" method="post">
             @csrf
+            <a href="{{ route('products.create') }}" class="btn btn-primary">商品を登録する</a>
             <button type="submit" class="btn btn-sm btn-dark">ログアウト</button>
         </form>
 
