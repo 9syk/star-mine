@@ -43,7 +43,6 @@
                 <button type="submit" class="btn w-100 btn-success">検索</button>
             </div>
         </form>
-
         <form onsubmit="return confirm('ログアウトしますか？')" action="{{ route('logout') }}" method="post">
             @csrf
             <button type="submit" class="btn btn-sm btn-dark">ログアウト</button>
